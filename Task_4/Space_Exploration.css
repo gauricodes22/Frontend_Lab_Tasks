@@ -1,0 +1,384 @@
+
+/* ---------- General ---------- */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #050b12;
+    color: white;
+}
+
+
+/* ---------- Navbar ---------- */
+
+.space-nav {
+    background-color: #071923;
+    padding: 12px 0;
+    border-bottom: 1px solid #15516a;
+}
+
+.space-nav .navbar-brand {
+    color: #00e5ff;
+    font-weight: bold;
+}
+
+.space-nav .nav-link {
+    color: #d5f7ff;
+    margin-left: 15px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.space-nav .nav-link:hover {
+    color: #a3ff12;
+}
+
+.space-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #a3ff12;
+    left: 50%;
+    bottom: 0;
+    transition: 0.3s;
+}
+
+.space-nav .nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+
+/* ---------- Hero ---------- */
+
+.hero {
+    background: linear-gradient(
+        135deg,
+        #06131f,
+        #092a3c,
+        #050b12
+    );
+    padding: 90px 0;
+    overflow: hidden;
+}
+
+.hero h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+}
+
+.hero h1 span {
+    color: #00e5ff;
+}
+
+.hero p {
+    color: #b9d5e5;
+    font-size: 18px;
+}
+
+.subtitle {
+    color: #a3ff12 !important;
+    font-size: 14px !important;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+
+/* ---------- Planet and Rocket ---------- */
+
+.planet-system {
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Planet */
+
+.planet-system .planet {
+    width: 210px;
+    height: 210px;
+    margin: 0;
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle at 30% 30%,
+        #8cf7ff,
+        #0077b6 40%,
+        #061b40 80%
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 90px;
+
+    box-shadow:
+        0 0 20px #00e5ff,
+        0 0 55px #0077ff55;
+
+    position: relative;
+    z-index: 1;
+
+    animation: floatPlanet 3s ease-in-out infinite;
+}
+
+
+/* Rocket stays outside and gently swings */
+
+.rocket {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    font-size: 30px;
+    line-height: 1;
+
+    z-index: 2;
+    transform-origin: 0 0;
+
+    animation: rocketMove 2s ease-in-out infinite alternate;
+}
+
+/* Only a small movement, NOT a full circle */
+
+@keyframes rocketMove {
+    0% {
+        transform:
+            rotate(-15deg)
+            translateX(125px)
+            rotate(90deg);
+    }
+
+    100% {
+        transform:
+            rotate(15deg)
+            translateX(125px)
+            rotate(90deg);
+    }
+}
+
+
+/* Planet gently floats */
+
+@keyframes floatPlanet {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* ---------- Explore Button ---------- */
+
+.explore-btn {
+    background: linear-gradient(90deg, #0077ff, #00c9d8);
+    color: white;
+    padding: 10px 22px;
+    border-radius: 5px;
+    border: none;
+    transition: 0.3s;
+}
+
+.explore-btn:hover {
+    background: #a3ff12;
+    color: #07131a;
+    transform: translateY(-3px);
+}
+
+
+/* ---------- About ---------- */
+
+.about {
+    background-color: #050b12;
+}
+
+.about h2,
+.missions h2,
+.contact h2 {
+    color: white;
+}
+
+.about > .container > p {
+    color: #9bc4d0;
+}
+
+.info-box {
+    padding: 25px;
+    background-color: #0b1d29;
+    border: 1px solid #15516a;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.info-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 5px 20px #00e5ff25;
+    border-color: #a3ff12;
+}
+
+.info-box h4 {
+    margin-top: 10px;
+    color: #00e5ff;
+}
+
+.info-box p {
+    color: #9bc4d0;
+}
+
+
+/* ---------- Missions ---------- */
+
+.missions {
+    background-color: #071923;
+}
+
+.mission-card {
+    height: 100%;
+    padding: 25px;
+    background-color: #0b1d29;
+    border: 1px solid #15516a;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.mission-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 5px 20px #00e5ff25;
+    border-color: #a3ff12;
+}
+
+.mission-card h3 {
+    color: #00e5ff;
+}
+
+.mission-card p {
+    color: #9bc4d0;
+}
+
+.mission-card .btn {
+    background: linear-gradient(90deg, #0077ff, #00c9d8);
+    color: white;
+    padding: 7px 18px;
+    border: none;
+    transition: 0.3s;
+}
+
+.mission-card .btn:hover {
+    background: #a3ff12;
+    color: #07131a;
+}
+
+
+/* ---------- Contact ---------- */
+
+.contact {
+    background-color: #050b12;
+}
+
+.contact p {
+    color: #9bc4d0;
+}
+
+.contact-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #0077ff, #00c9d8);
+    color: white;
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.contact-btn:hover {
+    background: #a3ff12;
+    color: #07131a;
+    transform: translateY(-3px);
+}
+
+
+/* ---------- Footer ---------- */
+
+.footer {
+    background-color: #020609;
+    color: #9bc4d0;
+}
+
+
+/* ---------- Mobile Navbar ---------- */
+
+@media (max-width: 991px) {
+
+    .space-nav .navbar-toggler {
+        border: 1px solid #00e5ff;
+    }
+
+    .space-nav .navbar-toggler-icon {
+        filter: brightness(0) invert(1);
+    }
+
+    .space-nav .navbar-collapse {
+        background-color: #071923;
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    .space-nav .nav-link {
+        margin: 5px 0;
+        text-align: center;
+    }
+
+    .space-nav .nav-link::after {
+        display: none;
+    }
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 768px) {
+
+    .hero {
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .planet-system {
+        width: 250px;
+        height: 250px;
+        margin-top: 40px;
+    }
+
+    .planet-system .planet {
+        width: 170px;
+        height: 170px;
+        font-size: 75px;
+    }
+
+    .rocket {
+        font-size: 27px;
+    }
+}
+
+
+/* ---------- Accessibility ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .rocket,
+    .planet-system .planet {
+        animation: none;
+    }
+}
