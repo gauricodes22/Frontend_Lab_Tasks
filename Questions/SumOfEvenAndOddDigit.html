@@ -1,0 +1,19 @@
+
+let n = 12345;
+let evenSum = 0;
+let oddSum = 0;
+
+while (n > 0) {
+    let digit = n % 10;
+
+    if (digit % 2 == 0) {
+        evenSum += digit;
+    } else {
+        oddSum += digit;
+    }
+
+    n = Math.floor(n / 10);
+}
+
+console.log("Sum of even digits:", evenSum);
+console.log("Sum of odd digits:", oddSum);

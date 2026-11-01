@@ -1,0 +1,36 @@
+
+let category = "domestic";
+let units = 100;
+let rate;
+let bill;
+
+switch (category.toLowerCase()) {
+    case "domestic":
+        rate = 5;
+        break;
+
+    case "commercial":
+        rate = 2;
+        break;
+
+    case "industry":
+        rate = 10;
+        break;
+
+    default:
+        console.log("Invalid category");
+        break;
+}
+
+if (
+    category.toLowerCase() === "domestic" ||
+    category.toLowerCase() === "commercial" ||
+    category.toLowerCase() === "industry"
+) {
+    bill = units * rate;
+
+    console.log("Category:", category);
+    console.log("Units consumed:", units);
+    console.log("Rate per unit: Rs.", rate);
+    console.log("Electricity bill: Rs.", bill);
+}
