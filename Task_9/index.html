@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Server Data Fetching</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background-color: #f0f8ff;
+        }
+        h2 {
+            color: #333;
+        }
+        button {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Server Data Fetching</h2>
+    <button onclick="fetchData()">Fetch Data</button>
+    <div id="result"></div>
+    <script>
+        function fetchData() {
+            document.getElementById("result").innerHTML = "Loading data...";
+            let promise = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve({
+                        name: "Meghana",
+                        course: "Java Full Stack",
+                        department: "Computer Science"
+                    });
+                }, 3000);
+            });
+            promise.then((data) => {
+                document.getElementById("result").innerHTML =
+                    "<h3>Data Received Successfully!</h3>" +
+                    "<p>Name: " + data.name + "</p>" +
+                    "<p>Course: " + data.course + "</p>" +
+                    "<p>Department: " + data.department + "</p>";
+            });
+        }
+    </script>
+
+</body>
+</html>
