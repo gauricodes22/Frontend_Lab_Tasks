@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 7 - DOM Manipulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input {
+            padding: 10px;
+            width: 60%;
+        }
+        button {
+            padding: 10px;
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #eee;
+            padding: 10px;
+            margin: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        /* Image Gallery */
+
+        .gallery {
+            background: white;
+            width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #mainImage {
+            width: 400px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .thumbnails img {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            margin: 8px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .thumbnails img:hover {
+            border: 3px solid #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>DOM Manipulation</h1>
+
+    <!-- To-Do List -->
+
+    <div class="container">
+        <h2>To-Do List</h2>
+        <input type="text" id="taskInput" placeholder="Enter your task">
+        <button id="addBtn">Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+
+
+    <!-- Image Gallery -->
+
+    <div class="gallery">
+        <h2>Image Gallery</h2>
+        <img id="mainImage"
+        src="https://picsum.photos/id/1015/600/400">
+        <div class="thumbnails">
+            <img src="https://picsum.photos/id/1015/600/400" class="thumb">
+            <img src="https://picsum.photos/id/1016/600/400" class="thumb">
+            <img src="https://picsum.photos/id/1025/600/400" class="thumb">
+            <img src="https://picsum.photos/id/1035/600/400" class="thumb">
+        </div>
+    </div>
+
+    <script>
+
+        // To-Do List
+        let addBtn = document.getElementById("addBtn");
+        addBtn.addEventListener("click", function() {
+            let input = document.getElementById("taskInput");
+            let task = input.value.trim();
+            if (task === "") {
+                alert("Please enter a task");
+                return;
+            }
+            let li = document.createElement("li");
+            let span = document.createElement("span");
+            span.textContent = task;
+            let deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Delete";
+            deleteBtn.addEventListener("click", function() {
+                li.remove();
+            });
+            li.appendChild(span);
+            li.appendChild(deleteBtn);
+            document.getElementById("taskList").appendChild(li);
+            input.value = "";
+        });
+
+        // Image Gallery
+        let thumbnails = document.querySelectorAll(".thumb");
+        let mainImage = document.getElementById("mainImage");
+        thumbnails.forEach(function(image) {
+            image.addEventListener("click", function() {
+                mainImage.src = image.src;
+            });
+        });
+    </script>
+
+</body>
+</html>
