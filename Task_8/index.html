@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 8 - Advanced DOM</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            background: white;
+            width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input {
+            padding: 10px;
+            width: 60%;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin: 3px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            background: #eee;
+            padding: 10px;
+            margin: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        /* Chessboard styling */
+        #chessboard {
+            display: grid;
+            grid-template-columns: repeat(8, 50px);
+            width: 400px;
+            margin: 20px auto;
+            border: 3px solid black;
+        }
+
+        .square {
+            width: 50px;
+            height: 50px;
+        }
+
+        .white {
+            background-color: white;
+        }
+
+        .black {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Advanced DOM Applications</h1>
+
+    <!-- To-Do List -->
+    <div class="container">
+        <h2>To-Do List</h2>
+
+        <input type="text" id="taskInput" placeholder="Enter your task">
+
+        <button onclick="addTask()">Add</button>
+
+        <ul id="taskList"></ul>
+    </div>
+
+    <!-- Chessboard -->
+    <h2>Dynamic Chessboard</h2>
+
+    <div id="chessboard"></div>
+
+    <script>
+
+        // To-Do List Functionality
+
+        function addTask() {
+
+            let input = document.getElementById("taskInput");
+            let task = input.value.trim();
+
+            if (task === "") {
+                alert("Please enter a task!");
+                return;
+            }
+
+            let li = document.createElement("li");
+
+            let checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+
+            let span = document.createElement("span");
+            span.textContent = task;
+
+            checkbox.onchange = function() {
+                span.classList.toggle("completed");
+            };
+
+            let upButton = document.createElement("button");
+            upButton.textContent = "↑";
+
+            upButton.onclick = function() {
+                let previous = li.previousElementSibling;
+
+                if (previous) {
+                    li.parentNode.insertBefore(li, previous);
+                }
+            };
+
+            let downButton = document.createElement("button");
+            downButton.textContent = "↓";
+
+            downButton.onclick = function() {
+                let next = li.nextElementSibling;
+
+                if (next) {
+                    li.parentNode.insertBefore(next, li);
+                }
+            };
+
+            let deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+
+            deleteButton.onclick = function() {
+                li.remove();
+            };
+
+            li.appendChild(checkbox);
+            li.appendChild(span);
+            li.appendChild(upButton);
+            li.appendChild(downButton);
+            li.appendChild(deleteButton);
+
+            document.getElementById("taskList").appendChild(li);
+
+            input.value = "";
+        }
+
+
+        // Dynamic Chessboard using JavaScript Loops
+
+        let board = document.getElementById("chessboard");
+
+        for (let row = 0; row < 8; row++) {
+
+            for (let col = 0; col < 8; col++) {
+
+                let square = document.createElement("div");
+
+                square.classList.add("square");
+
+                if ((row + col) % 2 === 0) {
+                    square.classList.add("white");
+                } else {
+                    square.classList.add("black");
+                }
+
+                board.appendChild(square);
+            }
+        }
+
+    </script>
+
+</body>
+</html>
