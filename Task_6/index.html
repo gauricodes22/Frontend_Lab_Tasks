@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const students = [
+        { name: "Rahul", marks: 85 },
+        { name: "Priya", marks: 32 },
+        { name: "Amit", marks: 67 },
+        { name: "Sneha", marks: 90 },
+        { name: "Kiran", marks: 28 }
+    ];
+
+    // 1. Closure: Function to add grace marks
+    function createGraceFunction(grace) {
+        return function (student) {
+            return {
+                name: student.name,
+                marks: Math.min(student.marks + grace, 100)
+            };
+        };
+    }
+
+    // 2. Main function
+    function processStudents(studentArray) {
+
+        // Using Closure and map()
+        const addGrace = createGraceFunction(5);
+        const updatedStudents = studentArray.map(addGrace);
+
+        // Using filter() to select passing students
+        const passingStudents = updatedStudents.filter(
+            student => student.marks >= 40
+        );
+
+        // Using reduce() to calculate average
+        const totalMarks = passingStudents.reduce(
+            (sum, student) => sum + student.marks, 0
+        );
+
+        const average = passingStudents.length > 0
+            ? totalMarks / passingStudents.length
+            : 0;
+
+        // Using forEach() to display students
+        console.log("Passing Students:");
+
+        passingStudents.forEach(student => {
+            console.log(student.name + " : " + student.marks);
+        });
+
+        return {
+            passingStudents,
+            average
+        };
+    }
+
+    // Calling the main function
+    const report = processStudents(students);
+
+    // 3. IIFE: Display final report
+    (function () {
+        console.log("\n----- FINAL REPORT -----");
+        console.log("Total Passing Students:", report.passingStudents.length);
+        console.log("Average Marks:", report.average.toFixed(2));
+    })();
+</script>
+
+</html>
